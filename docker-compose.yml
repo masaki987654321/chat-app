@@ -18,5 +18,16 @@ services:
     environment:
       - POSTGRES_PASSWORD=password
 
+  front:
+    build: ./front
+    command: sh -c "cd app && yarn start"
+    ports:
+      - '8000:3000'
+    volumes:
+      - ./front:/myapp
+    depends_on:
+      - api
+    stdin_open: true
+
 volumes:
   dbdata:
