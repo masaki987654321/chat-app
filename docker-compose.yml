@@ -20,7 +20,7 @@ services:
 
   front:
     build: ./front
-    command: sh -c "cd app && yarn start"
+    command: sh -c "yarn start"
     ports:
       - '8000:3000'
     volumes:
@@ -28,6 +28,7 @@ services:
     depends_on:
       - api
     stdin_open: true
+    tty: true
 
 volumes:
   dbdata:
