@@ -5,6 +5,7 @@ import './App.css';
 import Header from './components/Header';
 import RoomList from './components/RoomList';
 import TextInput from './components/TextInput';
+import SendButton from './components/SendButton';
 
 class App extends Component {
 	render() {
@@ -16,6 +17,8 @@ class App extends Component {
 				<RoomList />
 
 				<TextInput />
+
+				<SendButton />
 
 			</React.Fragment>
 		);
