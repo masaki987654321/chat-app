@@ -2,7 +2,6 @@ import React from 'react';
 
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import Icon from '@material-ui/core/Icon';
 
 const useStyles = makeStyles((theme: Theme) => ({
     button: {
@@ -26,9 +25,7 @@ function SendButton() {
             color="primary"
             className={classes.button}
             // onClick={() => props.onClick(props.value, props.image)}
-        >
-            <Icon>send</Icon>
-        </Button>
+        >create</Button>
     );
 }
 
