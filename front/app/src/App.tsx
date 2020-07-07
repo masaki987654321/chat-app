@@ -7,6 +7,9 @@ import RoomList from './components/RoomList';
 import TextInput from './components/TextInput';
 import SendButton from './components/SendButton';
 
+import { connect } from 'react-redux';
+
+
 class App extends Component {
 	render() {
 		return (
@@ -25,4 +28,7 @@ class App extends Component {
 	}
 }
 
-export default App;
+function mapStateToProps(state) {
+	return { state };
+}
+export default connect(mapStateToProps)(App);
