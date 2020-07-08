@@ -15,8 +15,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     }));
 
-// todo 引数にprops
-function SendButton() {
+// todo eventの型　any 使わない
+type sendButtonProps = {
+    value: string,
+    onClick: (event: any) => void,
+}
+
+function SendButton(props: sendButtonProps) {
     const classes = useStyles();
 
     return (
@@ -24,7 +29,7 @@ function SendButton() {
             variant="contained"
             color="primary"
             className={classes.button}
-            // onClick={() => props.onClick(props.value, props.image)}
+            onClick={() => props.onClick(props.value)}
         >create</Button>
     );
 }
