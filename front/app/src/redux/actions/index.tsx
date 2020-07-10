@@ -1,17 +1,22 @@
 import { createActions } from 'redux-actions';
 
-type createdRoom = {
-    id: number;
-    name: string;
-    ip: string;
-    craeted_at: string;
-    updated_at: string;
-};
+// todo 型をしっかり書く
+type rooms = any;
 
 const actions: any = createActions(
     {
         rooms: {
-            create(value: string): createdRoom{
+            index(): rooms{
+                // todo　httpリクエストを書く
+                //Httpリクエスト room作成　room追加したroomが帰ってくる
+                let response: any = `[{"id":1,"name":"inittiall","ip":"inittiaalka","created_at":"2020-06-26T13:21:06.093Z","updated_at":"2020-06-26T13:21:06.093Z"},{"id":2,"name":"dkdkdkdkdkkfdkjg","ip":"djjfkdsjgakf","created_at":"2020-06-26T13:21:21.145Z","updated_at":"2020-06-26T13:21:21.145Z"}]`;
+                console.log(response);
+                let payload: rooms = JSON.parse(response);
+                console.log(payload);
+                return payload;
+            },
+
+            create(value: string): rooms{
                 
                 // todo メッセージがからのさいの処理
                 // if (text === '') {
@@ -21,15 +26,9 @@ const actions: any = createActions(
 
                 // todo　httpリクエストを書く
                 //Httpリクエスト room作成　room追加したroomが帰ってくる
-                let response: any = `{
-                    "id":"1",
-                    "name":"${value}",
-                    "ip":"${value}",
-                    "created_at":"2020-06-26T13:21:06.093Z",
-                    "updated_at":"2020-06-26T13:21:06.093Z"
-                }`;
+                let response: any = `[{"id":1,"name":"${value}","ip":"${value}","created_at":"2020-06-26T13:21:06.093Z","updated_at":"2020-06-26T13:21:06.093Z"},{"id":2,"name":"${value}","ip":"${value}","created_at":"2020-06-26T13:21:21.145Z","updated_at":"2020-06-26T13:21:21.145Z"}]`;
                 console.log(response);
-                let payload: createdRoom = JSON.parse(response);
+                let payload: rooms = JSON.parse(response);
                 console.log(payload);
                 return payload;
             },

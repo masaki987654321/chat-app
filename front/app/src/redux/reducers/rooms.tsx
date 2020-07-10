@@ -5,9 +5,14 @@ import { initialState } from '../store/initialState';
 const roomReducer = handleActions(
     {
         // todo actionTypes作る
+        [`${actions.rooms.index}`]: (state, action) => ({
+            ...state,
+            rooms: action.payload,
+        }),
+        
         [`${actions.rooms.create}`]: (state, action) => ({
             ...state,
-            room: action.payload,
+            rooms: action.payload,
             value: '',
         }),
         // todo　destroy　reduxerを書く

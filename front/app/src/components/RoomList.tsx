@@ -17,18 +17,24 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }));
 
-// todo propsを引数にする
-function RoomList() {
+// todo propsの型をしっかり書く
+type roomListProps = {
+    name: string,
+    ip: string,
+}
+
+
+function RoomList(props: roomListProps) {
     const classes = useStyles();
-    // console.log(props);
+    const nameInitial: string = props.name.slice(0,1);
 
     return (
         <List className={classes.root}>
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
-                    <Avatar>A</Avatar>
+                    <Avatar>{nameInitial}</Avatar>
                 </ListItemAvatar>
-                <ListItemText primary='room01' />
+                <ListItemText primary={props.name} />
             </ListItem>
             <Divider variant="inset" component="li" />
         </List>

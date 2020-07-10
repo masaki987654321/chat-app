@@ -14,13 +14,21 @@ import { actions } from './redux/actions/index';
 type props = any;
 
 class App extends Component<props> {
+
+	componentDidMount() {
+		console.log(this.props.actions.rooms.index);
+		this.props.actions.rooms.index();
+	}
+	
 	render() {
+		console.log(this.props);
 		return (
 			<React.Fragment>
 				<Header />
 
-				// todo ルームの数だけループ
-				<RoomList />
+				{this.props.state.roomReducer.rooms.map((room: any) => {
+					return <RoomList name={room.name} ip={room.ip}/>
+				})}
 
 				<TextInput
 					onChange={this.props.actions.rooms.change}

@@ -10,7 +10,6 @@ type textInputProps = {
 }
 class TextInput extends Component<textInputProps> {
     render () {
-        console.log(this.props);
         return (
             <React.Fragment>
                 <form className="wrap" noValidate autoComplete="off">
