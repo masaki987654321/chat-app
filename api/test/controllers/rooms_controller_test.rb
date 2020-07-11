@@ -12,10 +12,10 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create room" do
     assert_difference('Room.count') do
-      post rooms_url, params: { room: { ip: @room.ip, name: @room.name } }, as: :json
+      post rooms_url, params: { ip: @room.ip, name: @room.name }, as: :json
     end
 
-    assert_response 201
+    assert_response :success
   end
 
   test "should show room" do
@@ -31,7 +31,7 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
   test "should destroy room" do
     assert_difference('Room.count', -1) do
       delete room_url(@room), as: :json
-    end
+  end
 
     assert_response 204
   end

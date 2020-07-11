@@ -18,7 +18,8 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
 
     if @room.save
-      render json: @room, status: :created, location: @room
+      @rooms = Room.all
+      render json: @rooms
     else
       render json: @room.errors, status: :unprocessable_entity
     end
