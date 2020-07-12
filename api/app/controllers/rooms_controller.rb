@@ -10,7 +10,9 @@ class RoomsController < ApplicationController
 
 	# GET /rooms/1
 	def show
-		render json: @room
+		logger.debug "rooms show params #{params.inspect}"
+		@messages = Message.where(room_id: params[:id])
+		render json: @messages
 	end
 
 	# POST /rooms
