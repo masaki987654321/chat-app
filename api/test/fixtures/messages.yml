@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  text: test1
+  ip: 192.168.0.1
+  room_id: 1
+
+two:
+  text: test2
+  ip: 192.168.0.2
+  room_id: 2
