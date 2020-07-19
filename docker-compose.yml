@@ -25,6 +25,7 @@ services:
       - '8000:3000'
     volumes:
       - ./front:/myapp
+      - node_modules_volume:/myapp/app/node_modules
     depends_on:
       - api
     stdin_open: true
@@ -32,3 +33,4 @@ services:
 
 volumes:
   dbdata:
+  node_modules_volume:
