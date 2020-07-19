@@ -29,15 +29,7 @@ const actions: any = createActions(
                     reqCreate.open('POST', 'http://localhost:3000/rooms', false)
                     reqCreate.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
                     // todo ip を取得する
-                    reqCreate.send('name=' + value + '& ip=123456789');
-                    console.log(reqCreate.status);
-                    // rails rooms/create　アクション変更
-                    if(reqCreate.status === 200) {
-                        let res: any = reqCreate.responseText;
-                        res = JSON.parse(res)
-                        console.log(res);
-                    }
-                    
+                    reqCreate.send('name=' + value + '& ip=123456789');                   
                 }
 
                 const req: any = new XMLHttpRequest();

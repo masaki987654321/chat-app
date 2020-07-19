@@ -17,13 +17,12 @@ class RoomsController < ApplicationController
 
 	# POST /rooms
 	def create
-		@room = Room.new(room_params)
+		room = Room.new(room_params)
 
-		if @room.save
-		@rooms = Room.all
-		render json: @rooms
+		if room.save
+		render json: { status: 'SUCCESS', data: room }
 		else
-		render json: @room.errors, status: :unprocessable_entity
+		render json: {status: :unprocessable_entity, data: room.errors}
 		end
 	end
 
