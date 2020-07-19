@@ -1,4 +1,5 @@
 import { createActions } from 'redux-actions';
+import { request } from 'https';
 
 // todo 型をしっかり書く
 type rooms = any;
@@ -6,30 +7,47 @@ type rooms = any;
 const actions: any = createActions(
     {
         rooms: {
+            // todo　redux-thunkを使う
             index(): rooms{
-                // todo　httpリクエストを書く
-                //Httpリクエスト room作成　room追加したroomが帰ってくる
-                let response: any = `[{"id":1,"name":"inittiall","ip":"inittiaalka","created_at":"2020-06-26T13:21:06.093Z","updated_at":"2020-06-26T13:21:06.093Z"},{"id":2,"name":"dkdkdkdkdkkfdkjg","ip":"djjfkdsjgakf","created_at":"2020-06-26T13:21:21.145Z","updated_at":"2020-06-26T13:21:21.145Z"}]`;
-                console.log(response);
-                let payload: rooms = JSON.parse(response);
-                console.log(payload);
+                const req: any = new XMLHttpRequest();
+                req.open('GET', 'http://localhost:3000/rooms', false)
+                req.send(null);
+                let payload: rooms = [];
+                if(req.status === 200) {
+                    let res: any = req.responseText;
+                    payload = JSON.parse(res)
+                }
                 return payload;
             },
 
             create(value: string): rooms{
                 
-                // todo メッセージがからのさいの処理
-                // if (text === '') {
-                //     alert('メッセージを入力してください');
-                //     return false;
-                // }
+                if (value === '') {
+                    alert('メッセージを入力してください');
+                } else {
+                    const reqCreate: any = new XMLHttpRequest();
+                    reqCreate.open('POST', 'http://localhost:3000/rooms', false)
+                    reqCreate.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                    // todo ip を取得する
+                    reqCreate.send('name=' + value + '& ip=123456789');
+                    console.log(reqCreate.status);
+                    // rails rooms/create　アクション変更
+                    if(reqCreate.status === 200) {
+                        let res: any = reqCreate.responseText;
+                        res = JSON.parse(res)
+                        console.log(res);
+                    }
+                    
+                }
 
-                // todo　httpリクエストを書く
-                //Httpリクエスト room作成　room追加したroomが帰ってくる
-                let response: any = `[{"id":1,"name":"${value}","ip":"${value}","created_at":"2020-06-26T13:21:06.093Z","updated_at":"2020-06-26T13:21:06.093Z"},{"id":2,"name":"${value}","ip":"${value}","created_at":"2020-06-26T13:21:21.145Z","updated_at":"2020-06-26T13:21:21.145Z"}]`;
-                console.log(response);
-                let payload: rooms = JSON.parse(response);
-                console.log(payload);
+                const req: any = new XMLHttpRequest();
+                req.open('GET', 'http://localhost:3000/rooms', false)
+                req.send(null);
+                let payload: rooms = [];
+                if(req.status === 200) {
+                    let res: any = req.responseText;
+                    payload = JSON.parse(res)
+                }
                 return payload;
             },
 
