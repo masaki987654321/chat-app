@@ -5,6 +5,12 @@ import Message from './Message';
 type messagesProps = any;
 
 class Messages extends Component<messagesProps> {
+
+    componentDidMount() {
+		console.log(this.props);
+		this.props.room_show(this.props.room_id);
+    }
+    
     render () {
         console.log(this.props);
         return (

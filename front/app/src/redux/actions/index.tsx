@@ -24,7 +24,7 @@ const actions: any = createActions(
             create(value: string): rooms{
                 
                 if (value === '') {
-                    alert('メッセージを入力してください');
+                    alert('ルーム名を入力してください');
                 } else {
                     const reqCreate: any = new XMLHttpRequest();
                     reqCreate.open('POST', 'http://localhost:3000/rooms', false)
@@ -65,9 +65,35 @@ const actions: any = createActions(
                     let res: any = req.responseText;
                     payload = JSON.parse(res)
                 }
+                console.log(payload);
                 return payload;
             },
         },
+        messages :{
+            create(room_id: string, value: string): messages {
+                if (value === '') {
+                    alert('メッセージを入力してください');
+                } else {
+                    const reqCreate: any = new XMLHttpRequest();
+                    reqCreate.open('POST', 'http://localhost:3000/messages', false)
+                    reqCreate.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                    // todo ip を取得する
+                    reqCreate.send('text=' + value + '& ip=123456789 & room_id=' + room_id);                   
+                }
+
+                const req: any = new XMLHttpRequest();
+                console.log(room_id);
+                req.open('GET', 'http://localhost:3000/rooms/' + room_id, false)
+                req.send(null);
+                let payload: messages = [];
+                if(req.status === 200) {
+                    let res: any = req.responseText;
+                    payload = JSON.parse(res)
+                }
+                console.log(payload);
+                return payload;
+            }
+        }
     },
 );
 

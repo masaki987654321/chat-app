@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 // todo eventの型　any 使わない
 type textInputProps = {
     value: string,
+    label: string,
     onChange: (event: any) => void,
 }
 class TextInput extends Component<textInputProps> {
@@ -15,7 +16,7 @@ class TextInput extends Component<textInputProps> {
                 <form className="wrap" noValidate autoComplete="off">
                     <TextField
                         id="standard-text"
-                        label="ルーム作成　ルーム名を入力"
+                        label={this.props.label}
                         className="text"
                         margin="normal"
                         value={this.props.value}
