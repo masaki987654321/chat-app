@@ -5,6 +5,7 @@ import Header from './components/Header';
 import RoomList from './components/RoomList';
 import TextInput from './components/TextInput';
 import SendButton from './components/SendButton';
+import Messages from './components/Messages';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -16,7 +17,8 @@ import {
 	Route,
 	Link,
 	Redirect
-} from 'react-router-dom'
+} from 'react-router-dom';
+
 
 // todo propsの肩をかく
 type props = any;
@@ -35,7 +37,7 @@ class App extends Component<props> {
 				<Header />
 
 				<Router>
-					<switch>
+					<Switch>
 						<Route path='/home'>
 							{this.props.state.roomReducer.rooms.map((room: any) => {
 								return <RoomList name={room.name} ip={room.ip}/>
@@ -51,7 +53,12 @@ class App extends Component<props> {
 								value={this.props.state.roomReducer.value}
 							/>
 						</Route>
-					</switch>
+						<Route path='/msg'>
+							<Messages
+								messages={this.props.state.roomReducer.messages}
+							/>
+						</Route>
+					</Switch>
 				</Router>
 
 

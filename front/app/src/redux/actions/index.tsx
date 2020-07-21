@@ -3,6 +3,7 @@ import { request } from 'https';
 
 // todo 型をしっかり書く
 type rooms = any;
+type messages = any;
 
 const actions: any = createActions(
     {
@@ -52,6 +53,18 @@ const actions: any = createActions(
 
             change(value: string) {
                 const payload: string = value;
+                return payload;
+            },
+
+            show(room_id: string): messages {
+                const req: any = new XMLHttpRequest();
+                req.open('GET', 'http://localhost:3000/rooms/' + room_id, false)
+                req.send(null);
+                let payload: messages = [];
+                if(req.status === 200) {
+                    let res: any = req.responseText;
+                    payload = JSON.parse(res)
+                }
                 return payload;
             },
         },

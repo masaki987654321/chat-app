@@ -24,6 +24,12 @@ const roomReducer = handleActions(
             ...state,
             value: action.payload,
         }),
+
+        [`${actions.rooms.create}`]: (state, action) => ({
+            ...state,
+            message: action.payload,
+            value: '',
+        })
     },
     initialState,
 )
