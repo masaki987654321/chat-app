@@ -2,12 +2,10 @@ class MessagesController < ApplicationController
 	def create
 		logger.debug "params log #{message_params.inspect}"
 		@message = Message.new(message_params)
+		@message.ip = request.remote_ip
 		if @message.save
-			@messages = Message.where(room_id: message_params[:room_id])
-			render json: @messages
-			logger.debug "successs"
+			render json: { status: 'SUCCESS', data: @message }
 		else
-			logger.debug "fail"
 			render json: @message.errors, status: :unprocessable_entity
 		end
 	end
@@ -18,6 +16,6 @@ class MessagesController < ApplicationController
 
 	private
 		def message_params
-			params.permit(:text, :ip, :room_id)
+			params.permit(:text, :room_id)
 		end
 end

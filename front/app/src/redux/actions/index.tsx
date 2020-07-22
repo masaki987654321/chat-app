@@ -29,8 +29,7 @@ const actions: any = createActions(
                     const reqCreate: any = new XMLHttpRequest();
                     reqCreate.open('POST', 'http://localhost:3000/rooms', false)
                     reqCreate.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-                    // todo ip を取得する
-                    reqCreate.send('name=' + value + '& ip=123456789');                   
+                    reqCreate.send('name=' + value);                   
                 }
 
                 const req: any = new XMLHttpRequest();
@@ -78,7 +77,7 @@ const actions: any = createActions(
                     reqCreate.open('POST', 'http://localhost:3000/messages', false)
                     reqCreate.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
                     // todo ip を取得する
-                    reqCreate.send('text=' + value + '& ip=123456789 & room_id=' + room_id);                   
+                    reqCreate.send('text=' + value + '& room_id=' + room_id);                   
                 }
 
                 const req: any = new XMLHttpRequest();

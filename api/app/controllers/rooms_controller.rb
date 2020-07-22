@@ -18,6 +18,7 @@ class RoomsController < ApplicationController
 	# POST /rooms
 	def create
 		room = Room.new(room_params)
+		room.ip = request.remote_ip
 
 		if room.save
 		render json: { status: 'SUCCESS', data: room }
@@ -48,6 +49,6 @@ class RoomsController < ApplicationController
 
 		# Only allow a trusted parameter "white list" through.
 		def room_params
-			params.permit(:name, :ip)
+			params.permit(:name)
 		end
 end
