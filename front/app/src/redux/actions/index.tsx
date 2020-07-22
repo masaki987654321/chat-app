@@ -92,6 +92,21 @@ const actions: any = createActions(
                 console.log(payload);
                 return payload;
             }
+        },
+        ipAdress :{
+            getAdress(): any {
+                const req: any = new XMLHttpRequest();
+                req.open('GET', 'http://localhost:3000/get_ip', false)
+                req.send(null);
+                let payload: string = '';
+                if(req.status === 200) {
+                    let res: any = req.responseText;
+                    res = JSON.parse(res);
+                    console.log(res);
+                    payload = res.data.ip
+                }
+                return payload;
+            }
         }
     },
 );

@@ -27,6 +27,7 @@ class App extends Component<props> {
 	componentDidMount() {
 		console.log(this.props.actions.rooms.index);
 		this.props.actions.rooms.index();
+		this.props.actions.ipAdress.getAdress();
 	}
 
 	render() {
@@ -77,6 +78,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 	actions: {
 		rooms: bindActionCreators(actions.rooms, dispatch),
 		messages: bindActionCreators(actions.messages, dispatch),
+		ipAdress: bindActionCreators(actions.ipAdress, dispatch),
 	},
 });
 

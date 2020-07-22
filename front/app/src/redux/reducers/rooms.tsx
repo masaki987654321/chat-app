@@ -36,6 +36,11 @@ const roomReducer = handleActions(
             messages: action.payload,
             value: '',
         }),
+
+        [`${actions.ipAdress.getAdress}`]: (state, action) => ({
+            ...state,
+            myIp: action.payload,
+        })
     },
     initialState,
 )
