@@ -57,7 +57,7 @@ const actions: any = createActions(
 
             show(room_id: string): messages {
                 const req: any = new XMLHttpRequest();
-                req.open('GET', 'http://localhost:3000/messages/' + room_id, false)
+                req.open('GET', 'http://localhost:3000/rooms/' + room_id, false)
                 req.send(null);
                 let payload: messages = [];
                 if(req.status === 200) {
@@ -69,6 +69,19 @@ const actions: any = createActions(
             },
         },
         messages :{
+            show(room_id: string): messages {
+                const req: any = new XMLHttpRequest();
+                req.open('GET', 'http://localhost:3000/messages/' + room_id, false)
+                req.send(null);
+                let payload: messages = [];
+                if(req.status === 200) {
+                    let res: any = req.responseText;
+                    payload = JSON.parse(res)
+                }
+                console.log(payload);
+                return payload;
+            },
+            
             create(room_id: string, value: string): messages {
                 if (value === '') {
                     alert('メッセージを入力してください');
@@ -91,7 +104,12 @@ const actions: any = createActions(
                 }
                 console.log(payload);
                 return payload;
-            }
+            },
+
+            change(value: string) {
+                const payload: string = value;
+                return payload;
+            },
         },
         ipAdress :{
             getAdress(): any {

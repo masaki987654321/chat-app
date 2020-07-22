@@ -37,10 +37,12 @@ class App extends Component<props> {
 
 				<Router>
 					<Link to='/home'>
-						<Header />
+						<Header title='ChatApp'/>
 					</Link>
+					
 					<Switch>
 						<Route path='/home'>
+
 							{this.props.state.roomReducer.rooms.map((room: any) => {
 								return <Link to={'/room/' + room.id}><RoomList name={room.name} ip={room.ip}/></Link>
 							})}
@@ -58,10 +60,11 @@ class App extends Component<props> {
 						</Route>
 						<Route path='/room/:room_id' render={({match}) => (
 							<Messages
-								messages={this.props.state.roomReducer.messages}
+								messages={this.props.state.messageReducer.messages}
 								actions={this.props.actions}
 								state={this.props.state}
 								match={match}
+								title={this.props.state.roomReducer.room.name}
 							/>
 						)}/>
 					</Switch>
