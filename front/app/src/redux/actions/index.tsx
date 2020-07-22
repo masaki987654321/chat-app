@@ -57,7 +57,7 @@ const actions: any = createActions(
 
             show(room_id: string): messages {
                 const req: any = new XMLHttpRequest();
-                req.open('GET', 'http://localhost:3000/rooms/' + room_id, false)
+                req.open('GET', 'http://localhost:3000/messages/' + room_id, false)
                 req.send(null);
                 let payload: messages = [];
                 if(req.status === 200) {
@@ -82,7 +82,7 @@ const actions: any = createActions(
 
                 const req: any = new XMLHttpRequest();
                 console.log(room_id);
-                req.open('GET', 'http://localhost:3000/rooms/' + room_id, false)
+                req.open('GET', 'http://localhost:3000/messages/' + room_id, false)
                 req.send(null);
                 let payload: messages = [];
                 if(req.status === 200) {

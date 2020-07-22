@@ -10,6 +10,11 @@ class MessagesController < ApplicationController
 		end
 	end
 
+	def index
+		@messages = Message.where(room_id: params[:id])
+		render json: @messages
+	end
+	
 	# todo messages destroy controller 作成
 	def destroy
 	end
