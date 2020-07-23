@@ -5,15 +5,9 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
     button: {
-        margin: theme.spacing(1),
+        marginLeft: theme.spacing(20),
     },
-    leftIcon: {
-        marginRight: theme.spacing(1),
-    },
-    iconSmall: {
-        fontSize: 20,
-    },
-    }));
+}));
 
 // todo eventの型　any 使わない
 type sendButtonProps = {

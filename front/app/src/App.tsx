@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+import './styles/App.css';
 
 import Header from './components/Header';
 import RoomList from './components/RoomList';
 import TextInput from './components/TextInput';
 import SendButton from './components/SendButton';
 import Messages from './components/Messages';
-import MessageButton from './components/MessageButton';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -36,7 +35,7 @@ class App extends Component<props> {
 			<React.Fragment>
 
 				<Router>
-					<Link to='/home'>
+					<Link to='/home' style={{ textDecoration: 'none' }} >
 						<Header title='ChatApp'/>
 					</Link>
 					
@@ -44,7 +43,7 @@ class App extends Component<props> {
 						<Route path='/home'>
 
 							{this.props.state.roomReducer.rooms.map((room: any) => {
-								return <Link to={'/room/' + room.id}><RoomList name={room.name} ip={room.ip}/></Link>
+								return <Link to={'/room/' + room.id} style={{ textDecoration: 'none' }}><RoomList name={room.name} ip={room.ip}/></Link>
 							})}
 
 							<TextInput

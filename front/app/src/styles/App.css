@@ -27,24 +27,3 @@
 .App ul li .MuiListItemAvatar-alignItemsFlexStart {
   margin-top: 0;
 }
-
-/* Header */
-h4 {
-  text-align: center;
-}
-
-/* TextInput */
-.wrap {
-  display: flex;
-  justify-content: center;
-}
-
-.wrap .text {
-  width: 80%;
-}
-
-.wrap button {
-  margin-top: 24px;
-  margin-right: 0;
-  width: 20%;
-}

@@ -9,10 +9,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
         backgroundColor: theme.palette.background.paper,
-    },
-    inline: {
-        display: 'inline',
-    },
+        width: '90%',
+        maxWidth: 800,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+    }
 }));
 
 // todo propsの型をしっかり書く
@@ -20,7 +21,6 @@ type msgProps = {
     msg: string,
     ip: string,
 }
-
 
 function Message(props: msgProps) {
     const classes = useStyles();
@@ -30,7 +30,7 @@ function Message(props: msgProps) {
             <ListItem alignItems="flex-start">
                 <ListItemText primary={props.msg} />
             </ListItem>
-            <Divider variant="inset" component="li" />
+            <Divider />
         </List>
     );
 }

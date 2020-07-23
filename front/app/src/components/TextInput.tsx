@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 
+import SendButton from './SendButton';
+
 import TextField from '@material-ui/core/TextField';
-// import '../styles/TextInput.css';
+import '../styles/TextInput.css';
 
 // todo eventの型　any 使わない
 type textInputProps = {

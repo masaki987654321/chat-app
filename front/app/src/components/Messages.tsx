@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Message from './Message';
 import TextInput from './TextInput';
 import MessageButton from './MessageButton';
-import Header from './Header';
+import RoomName from './RoomName';
 
 // todo 型書く
 type messagesProps = {
@@ -27,7 +27,7 @@ class Messages extends Component<messagesProps> {
         return (
             <React.Fragment>
 
-                <Header title={this.props.title} />
+                <RoomName title={this.props.title} />
                 
                 {this.props.messages.map((msg: any) => {
                     return <Message msg={msg.text} ip={msg.ip}/>
