@@ -29,7 +29,6 @@ class Rooms extends Component<messagesProps> {
                 <RoomInput
                     roomActions={this.props.roomActions}
                     roomReducer={this.props.roomReducer}
-                    label='ルームの作成　ルーム名を入力'
                 />
 
 

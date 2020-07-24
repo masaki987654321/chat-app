@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 
+import Header from './Header';
 import Message from './MessageList';
 import MessageInput from './MessageInput';
-import RoomName from './RoomName';
+
+import { Link } from 'react-router-dom';
 
 // todo 型書く
 type messagesProps = {
@@ -26,7 +28,9 @@ class Messages extends Component<messagesProps> {
         return (
             <React.Fragment>
 
-                <RoomName title={this.props.title} />
+                <Link to='/home' style={{ textDecoration: 'none' }} >
+                    <Header title={'トークルーム『' + this.props.title + '』に入りました'}/>
+                </Link>
                 
                 {this.props.messages.map((msg: any) => {
                     return <Message msg={msg.text} ip={msg.ip}/>
@@ -35,7 +39,6 @@ class Messages extends Component<messagesProps> {
                 <MessageInput
                     messageActions={this.props.actions.messages}
                     messageReducer={this.props.messageReducer}
-                    label='メッセージの送信　メッセージを入力'
                     room_id={this.props.match.params.room_id}
                 />
             </React.Fragment>

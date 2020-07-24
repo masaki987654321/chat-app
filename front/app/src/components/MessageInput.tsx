@@ -8,7 +8,6 @@ import '../styles/TextInput.css';
 type textInputProps = {
     messageReducer: any,
     messageActions: any,
-    label: string,
     room_id: string,
 }
 class MessageInput extends Component<textInputProps> {
@@ -18,7 +17,7 @@ class MessageInput extends Component<textInputProps> {
                 <form className="wrap" noValidate autoComplete="off">
                     <TextField
                         id="standard-text"
-                        label={this.props.label}
+                        label='メッセージを入力'
                         className="text"
                         margin="normal"
                         value={this.props.messageReducer.value}

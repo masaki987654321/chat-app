@@ -26,7 +26,7 @@ function MessageButton(props: messageButtonProps) {
             color="primary"
             className={classes.button}
             onClick={() => props.onClick(props.room_id, props.value)}
-        >Send</Button>
+        >送信</Button>
     );
 }
 

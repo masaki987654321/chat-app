@@ -8,7 +8,6 @@ import '../styles/TextInput.css';
 type textInputProps = {
     roomReducer: any,
     roomActions: any,
-    label: string,
 }
 class RoomInput extends Component<textInputProps> {
     render () {
@@ -17,7 +16,7 @@ class RoomInput extends Component<textInputProps> {
                 <form className="wrap" noValidate autoComplete="off">
                     <TextField
                         id="standard-text"
-                        label={this.props.label}
+                        label='トークルーム名を入力'
                         className="text"
                         margin="normal"
                         value={this.props.roomReducer.value}

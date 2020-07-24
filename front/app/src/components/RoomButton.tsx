@@ -25,7 +25,7 @@ function RoomButton(props: roomButtonProps) {
             color="primary"
             className={classes.button}
             onClick={() => props.onClick(props.value)}
-        >Create</Button>
+        >作成</Button>
     );
 }
 
