@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import './styles/App.css';
 
-import Header from './components/Header';
-import RoomList from './components/RoomList';
-import TextInput from './components/TextInput';
-import SendButton from './components/SendButton';
+import Rooms from './components/Rooms';
 import Messages from './components/Messages';
 
 import { bindActionCreators } from 'redux';
@@ -15,7 +12,6 @@ import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	Link,
 } from 'react-router-dom';
 
 // todo propsの肩をかく
@@ -33,28 +29,13 @@ class App extends Component<props> {
 		console.log(this.props);
 		return (
 			<React.Fragment>
-
 				<Router>
-					<Link to='/home' style={{ textDecoration: 'none' }} >
-						<Header title='ChatApp'/>
-					</Link>
-					
 					<Switch>
 						<Route path='/home'>
-
-							{this.props.state.roomReducer.rooms.map((room: any) => {
-								return <Link to={'/room/' + room.id} style={{ textDecoration: 'none' }}><RoomList name={room.name} ip={room.ip}/></Link>
-							})}
-
-							<TextInput
-								onChange={this.props.actions.rooms.change}
-								value={this.props.state.roomReducer.value}
-								label='ルームの作成　ルーム名を入力'
-							/>
-
-							<SendButton
-								onClick={this.props.actions.rooms.create}
-								value={this.props.state.roomReducer.value}
+							<Rooms
+								rooms={this.props.state.roomReducer.rooms}
+								roomActions={this.props.actions.rooms}
+								roomReducer={this.props.state.roomReducer}
 							/>
 						</Route>
 						<Route path='/room/:room_id' render={({match}) => (
@@ -68,7 +49,6 @@ class App extends Component<props> {
 						)}/>
 					</Switch>
 				</Router>
-
 			</React.Fragment>
 		);
 	}

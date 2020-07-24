@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import Message from './Message';
+import Message from './MessageList';
 import TextInput from './TextInput';
 import MessageButton from './MessageButton';
 import RoomName from './RoomName';
