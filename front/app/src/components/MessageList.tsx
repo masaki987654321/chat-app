@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         maxWidth: 800,
         marginLeft: 'auto',
         marginRight: 'auto',
+        wordWrap: 'break-word',
     },
     myMsg: {
         backgroundColor: '#B0C4DE',
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         maxWidth: 800,
         marginLeft: 'auto',
         marginRight: 'auto',
+        wordWrap: 'break-word',
     }
 }));
 

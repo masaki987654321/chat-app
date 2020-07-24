@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         backgroundColor: theme.palette.background.paper,
         marginLeft: 'auto',
         marginRight: 'auto',
+        wordWrap: 'break-word',
     },
     inline: {
         display: 'inline',
