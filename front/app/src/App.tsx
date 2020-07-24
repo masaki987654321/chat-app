@@ -33,18 +33,17 @@ class App extends Component<props> {
 					<Switch>
 						<Route path='/home'>
 							<Rooms
-								rooms={this.props.state.roomReducer.rooms}
 								roomActions={this.props.actions.rooms}
 								roomReducer={this.props.state.roomReducer}
 							/>
 						</Route>
 						<Route path='/room/:room_id' render={({match}) => (
 							<Messages
-								messages={this.props.state.messageReducer.messages}
 								actions={this.props.actions}
 								messageReducer={this.props.state.messageReducer}
 								match={match}
 								title={this.props.state.roomReducer.room.name}
+								myIp={this.props.state.ipReducer.myIp}
 							/>
 						)}/>
 					</Switch>

@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 // todo 型書く
 type messagesProps = {
     roomActions: any,
-    rooms: any,
     roomReducer: any,
 };
 
@@ -22,7 +21,7 @@ class Rooms extends Component<messagesProps> {
                     <Header title='ChatApp'/>
                 </Link>
 
-                {this.props.rooms.map((room: any) => {
+                {this.props.roomReducer.rooms.map((room: any) => {
                     return <Link to={'/room/' + room.id} style={{ textDecoration: 'none' }}><RoomList name={room.name} ip={room.ip}/></Link>
                 })}
 

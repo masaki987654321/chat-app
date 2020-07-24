@@ -7,8 +7,15 @@ import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        backgroundColor: theme.palette.background.paper,
+    msg: {
+        backgroundColor: '#F0F8FF',
+        width: '90%',
+        maxWidth: 800,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+    },
+    myMsg: {
+        backgroundColor: '#B0C4DE',
         width: '90%',
         maxWidth: 800,
         marginLeft: 'auto',
@@ -20,13 +27,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 type msgProps = {
     msg: string,
     ip: string,
+    myIp: string,
 }
 
 function Message(props: msgProps) {
     const classes = useStyles();
 
     return (
-        <List className={classes.root}>
+        <List className={props.ip == props.myIp ? classes.myMsg : classes.msg}>
             <ListItem alignItems="flex-start">
                 <ListItemText primary={props.msg} />
             </ListItem>

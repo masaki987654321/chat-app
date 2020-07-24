@@ -9,10 +9,10 @@ import { Link } from 'react-router-dom';
 // todo 型書く
 type messagesProps = {
     actions: any,
-    messages: any,
     messageReducer: any,
     match: any,
-    title: string
+    title: string,
+    myIp: string,
 };
 
 class Messages extends Component<messagesProps> {
@@ -32,8 +32,8 @@ class Messages extends Component<messagesProps> {
                     <Header title={'トークルーム『' + this.props.title + '』に入りました'}/>
                 </Link>
                 
-                {this.props.messages.map((msg: any) => {
-                    return <Message msg={msg.text} ip={msg.ip}/>
+                {this.props.messageReducer.messages.map((msg: any) => {
+                    return <Message msg={msg.text} ip={msg.ip} myIp={this.props.myIp}/>
                 })}
 
                 <MessageInput

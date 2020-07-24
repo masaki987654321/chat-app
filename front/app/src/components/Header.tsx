@@ -9,6 +9,7 @@ import '../styles/Header.css';
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
         flexGrow: 7,
+        marginBottom: 40,
     },
     title: {
         flexGrow: 1,
