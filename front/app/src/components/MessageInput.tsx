@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 
-import SendButton from './SendButton';
-
+import MessageButton from './MessageButton';
 import TextField from '@material-ui/core/TextField';
 import '../styles/TextInput.css';
 
 // todo eventの型　any 使わない
 type textInputProps = {
-    value: string,
+    messageReducer: any,
+    messageActions: any,
     label: string,
-    onChange: (event: any) => void,
+    room_id: string,
 }
-class TextInput extends Component<textInputProps> {
+class MessageInput extends Component<textInputProps> {
     render () {
         return (
             <React.Fragment>
@@ -21,8 +21,14 @@ class TextInput extends Component<textInputProps> {
                         label={this.props.label}
                         className="text"
                         margin="normal"
-                        value={this.props.value}
-                        onChange={e => this.props.onChange(e.target.value)}
+                        value={this.props.messageReducer.value}
+                        onChange={e => this.props.messageActions.change(e.target.value)}
+                    />
+
+                    <MessageButton
+                        onClick={this.props.messageActions.create}
+                        value={this.props.messageReducer.value}
+                        room_id={this.props.room_id}
                     />
                 </form>
             </React.Fragment>
@@ -30,4 +36,4 @@ class TextInput extends Component<textInputProps> {
     }
 }
 
-export default TextInput;
+export default MessageInput;

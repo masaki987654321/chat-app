@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 
 import Header from './Header';
 import RoomList from './RoomList';
-import TextInput from './TextInput';
-import SendButton from './SendButton';
+import RoomInput from './RoomInput';
 
 import { Link } from 'react-router-dom';
 
@@ -27,16 +26,13 @@ class Rooms extends Component<messagesProps> {
                     return <Link to={'/room/' + room.id} style={{ textDecoration: 'none' }}><RoomList name={room.name} ip={room.ip}/></Link>
                 })}
 
-                <TextInput
-                    onChange={this.props.roomActions.change}
-                    value={this.props.roomReducer.value}
+                <RoomInput
+                    roomActions={this.props.roomActions}
+                    roomReducer={this.props.roomReducer}
                     label='ルームの作成　ルーム名を入力'
                 />
 
-                <SendButton
-                    onClick={this.props.roomActions.create}
-                    value={this.props.roomReducer.value}
-                />
+
             </React.Fragment>
         )
     }

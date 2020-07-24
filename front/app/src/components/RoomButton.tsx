@@ -5,18 +5,19 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
     button: {
-        marginLeft: theme.spacing(20),
+        margin: theme.spacing(1),
     },
-}));
+    }));
 
 // todo eventの型　any 使わない
-type sendButtonProps = {
+type roomButtonProps = {
     value: string,
-    onClick: (event: any) => void,
+    onClick: any,
 }
 
-function SendButton(props: sendButtonProps) {
+function RoomButton(props: roomButtonProps) {
     const classes = useStyles();
+    console.log(props);
 
     return (
         <Button 
@@ -24,8 +25,8 @@ function SendButton(props: sendButtonProps) {
             color="primary"
             className={classes.button}
             onClick={() => props.onClick(props.value)}
-        >create</Button>
+        >Create</Button>
     );
 }
 
-export default SendButton;
+export default RoomButton;

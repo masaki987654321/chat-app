@@ -42,7 +42,7 @@ class App extends Component<props> {
 							<Messages
 								messages={this.props.state.messageReducer.messages}
 								actions={this.props.actions}
-								state={this.props.state}
+								messageReducer={this.props.state.messageReducer}
 								match={match}
 								title={this.props.state.roomReducer.room.name}
 							/>

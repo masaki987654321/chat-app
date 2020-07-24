@@ -7,12 +7,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     button: {
         margin: theme.spacing(1),
     },
-    leftIcon: {
-        marginRight: theme.spacing(1),
-    },
-    iconSmall: {
-        fontSize: 20,
-    },
     }));
 
 // todo eventの型　any 使わない
@@ -32,7 +26,7 @@ function MessageButton(props: messageButtonProps) {
             color="primary"
             className={classes.button}
             onClick={() => props.onClick(props.room_id, props.value)}
-        >create</Button>
+        >Send</Button>
     );
 }
 
