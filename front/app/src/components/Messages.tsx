@@ -6,10 +6,28 @@ import MessageInput from './MessageInput';
 
 import { Link } from 'react-router-dom';
 
-// todo 型書く
 type messagesProps = {
-    actions: any,
-    messageReducer: any,
+    actions: {
+        ipAdress: {
+            getAdress: () => string,
+        },
+        messages: {
+            change: (value: string) => string,
+            create: (room_id: string, value: string) => any,
+            show: (room_id: string) => any,
+        },
+        rooms: {
+            change: (value: string) => string,
+            create: (value: string) => any,
+            index: () => any,
+            show: (room_id: string) => any,
+        }
+    },
+    messageReducer: {
+        messages: any,
+        text: string,
+        value: string,
+    },
     match: any,
     title: string,
     myIp: string,
@@ -18,13 +36,11 @@ type messagesProps = {
 class Messages extends Component<messagesProps> {
 
     componentDidMount() {
-		console.log(this.props);
         this.props.actions.messages.show(this.props.match.params.room_id);
         this.props.actions.rooms.show(this.props.match.params.room_id);
     }
     
     render () {
-        console.log(this.props);
         return (
             <React.Fragment>
 

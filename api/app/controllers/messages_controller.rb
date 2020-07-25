@@ -1,6 +1,13 @@
 class MessagesController < ApplicationController
+
+	# get /messages/:id
+	def index
+		@messages = Message.where(room_id: params[:id])
+		render json: @messages
+	end
+
+	# post /messages
 	def create
-		logger.debug "params log #{message_params.inspect}"
 		@message = Message.new(message_params)
 		@message.ip = request.remote_ip
 		if @message.save
@@ -8,15 +15,6 @@ class MessagesController < ApplicationController
 		else
 			render json: @message.errors, status: :unprocessable_entity
 		end
-	end
-
-	def index
-		@messages = Message.where(room_id: params[:id])
-		render json: @messages
-	end
-	
-	# todo messages destroy controller 作成
-	def destroy
 	end
 
 	private

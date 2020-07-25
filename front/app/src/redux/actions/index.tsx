@@ -1,7 +1,6 @@
 import { createActions } from 'redux-actions';
-import { request } from 'https';
 
-// todo 型をしっかり書く
+// 型の付けかた調べる
 type rooms = any;
 type messages = any;
 
@@ -43,13 +42,6 @@ const actions: any = createActions(
                 return payload;
             },
 
-            destroy(id: number): number{
-                // todo　httpリクエストを書く
-                //Httpリクエスト room削除
-                let payload: number = id;
-                return payload;
-            },
-
             change(value: string) {
                 const payload: string = value;
                 return payload;
@@ -64,7 +56,6 @@ const actions: any = createActions(
                     let res: any = req.responseText;
                     payload = JSON.parse(res)
                 }
-                console.log(payload);
                 return payload;
             },
         },
@@ -78,7 +69,6 @@ const actions: any = createActions(
                     let res: any = req.responseText;
                     payload = JSON.parse(res)
                 }
-                console.log(payload);
                 return payload;
             },
             
@@ -89,12 +79,10 @@ const actions: any = createActions(
                     const reqCreate: any = new XMLHttpRequest();
                     reqCreate.open('POST', 'http://localhost:3000/messages', false)
                     reqCreate.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-                    // todo ip を取得する
                     reqCreate.send('text=' + value + '& room_id=' + room_id);                   
                 }
 
                 const req: any = new XMLHttpRequest();
-                console.log(room_id);
                 req.open('GET', 'http://localhost:3000/messages/' + room_id, false)
                 req.send(null);
                 let payload: messages = [];
@@ -102,7 +90,6 @@ const actions: any = createActions(
                     let res: any = req.responseText;
                     payload = JSON.parse(res)
                 }
-                console.log(payload);
                 return payload;
             },
 
@@ -120,7 +107,6 @@ const actions: any = createActions(
                 if(req.status === 200) {
                     let res: any = req.responseText;
                     res = JSON.parse(res);
-                    console.log(res);
                     payload = res.data.ip
                 }
                 return payload;

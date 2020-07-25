@@ -9,15 +9,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     }));
 
-// todo eventの型　any 使わない
 type roomButtonProps = {
     value: string,
-    onClick: any,
+    onClick: (value: string) => any,
 }
 
 function RoomButton(props: roomButtonProps) {
     const classes = useStyles();
-    console.log(props);
 
     return (
         <Button 

@@ -14,19 +14,16 @@ import {
 	Route,
 } from 'react-router-dom';
 
-// todo propsの肩をかく
 type props = any;
 
 class App extends Component<props> {
 
 	componentDidMount() {
-		console.log(this.props.actions.rooms.index);
 		this.props.actions.rooms.index();
 		this.props.actions.ipAdress.getAdress();
 	}
 
 	render() {
-		console.log(this.props);
 		return (
 			<React.Fragment>
 				<Router>
@@ -34,16 +31,16 @@ class App extends Component<props> {
 						<Route path='/home'>
 							<Rooms
 								roomActions={this.props.actions.rooms}
-								roomReducer={this.props.state.roomReducer}
+								roomReducer={this.props.roomReducer}
 							/>
 						</Route>
 						<Route path='/room/:room_id' render={({match}) => (
 							<Messages
 								actions={this.props.actions}
-								messageReducer={this.props.state.messageReducer}
+								messageReducer={this.props.messageReducer}
 								match={match}
-								title={this.props.state.roomReducer.room.name}
-								myIp={this.props.state.ipReducer.myIp}
+								title={this.props.roomReducer.room.name}
+								myIp={this.props.ipReducer.myIp}
 							/>
 						)}/>
 					</Switch>
@@ -53,7 +50,7 @@ class App extends Component<props> {
 	}
 }
 
-const mapStateToProps = (state: any) => ({ state });
+const mapStateToProps = (state: any) => ({ ...state });
 
 const mapDispatchToProps = (dispatch: any) => ({
 	actions: {

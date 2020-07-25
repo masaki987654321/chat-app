@@ -6,15 +6,24 @@ import RoomInput from './RoomInput';
 
 import { Link } from 'react-router-dom';
 
-// todo 型書く
 type messagesProps = {
-    roomActions: any,
-    roomReducer: any,
+    roomActions: {
+        change: (value: string) => string,
+        create: (value: string) => any,
+        index: () => any,
+        show: (room_id: string) => any,
+    },
+    roomReducer: {
+        room: any[],
+        rooms: any,
+        text: string,
+        value: string,
+    },
+    
 };
 
 class Rooms extends Component<messagesProps> { 
     render () {
-        console.log(this.props);
         return (
             <React.Fragment>
                 <Link to='/home' style={{ textDecoration: 'none' }} >
@@ -29,8 +38,6 @@ class Rooms extends Component<messagesProps> {
                     roomActions={this.props.roomActions}
                     roomReducer={this.props.roomReducer}
                 />
-
-
             </React.Fragment>
         )
     }

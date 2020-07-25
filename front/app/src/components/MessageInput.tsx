@@ -4,10 +4,17 @@ import MessageButton from './MessageButton';
 import TextField from '@material-ui/core/TextField';
 import '../styles/TextInput.css';
 
-// todo eventの型　any 使わない
 type textInputProps = {
-    messageReducer: any,
-    messageActions: any,
+    messageReducer: {
+        messages: any,
+        text: string,
+        value: string,
+    },
+    messageActions: {
+        change: (value: string) => string,
+        create: (room_id: string, value: string) => any,
+        show: (room_id: string) => any,
+    },
     room_id: string,
 }
 class MessageInput extends Component<textInputProps> {

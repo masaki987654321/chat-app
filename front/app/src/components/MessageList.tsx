@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
 }));
 
-// todo propsの型をしっかり書く
 type msgProps = {
     msg: string,
     ip: string,

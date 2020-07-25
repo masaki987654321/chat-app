@@ -9,16 +9,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     }));
 
-// todo eventの型　any 使わない
 type messageButtonProps = {
     value: string,
     room_id: string,
-    onClick: any,
+    onClick: (room_id: string, value: string) => any,
 }
 
 function MessageButton(props: messageButtonProps) {
     const classes = useStyles();
-    console.log(props);
 
     return (
         <Button 

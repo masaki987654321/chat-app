@@ -20,12 +20,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }));
 
-// todo propsの型をしっかり書く
 type roomListProps = {
     name: string,
     ip: string,
 }
-
 
 function RoomList(props: roomListProps) {
     const classes = useStyles();

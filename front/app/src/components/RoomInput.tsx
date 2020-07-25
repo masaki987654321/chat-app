@@ -4,10 +4,19 @@ import RoomButton from './RoomButton';
 import TextField from '@material-ui/core/TextField';
 import '../styles/TextInput.css';
 
-// todo eventの型　any 使わない
 type textInputProps = {
-    roomReducer: any,
-    roomActions: any,
+    roomReducer: {
+        room: any[],
+        rooms: any,
+        text: string,
+        value: string,
+    },
+    roomActions: {
+        change: (value: string) => string,
+        create: (value: string) => any,
+        index: () => any,
+        show: (room_id: string) => any,
+    },
 }
 class RoomInput extends Component<textInputProps> {
     render () {
