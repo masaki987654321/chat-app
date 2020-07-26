@@ -24,8 +24,8 @@ services:
     ports:
       - '8000:3000'
     volumes:
-      - ./front:/myapp
-      - node_modules_volume:/myapp/app/node_modules
+      - ./front/app:/myapp
+      - node_modules_volume:/myapp/node_modules
     depends_on:
       - api
     stdin_open: true
