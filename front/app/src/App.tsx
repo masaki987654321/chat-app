@@ -14,6 +14,8 @@ import {
 	Route,
 } from 'react-router-dom';
 
+import ActionCable from 'actioncable';
+
 type props = any;
 
 class App extends Component<props> {
@@ -21,6 +23,21 @@ class App extends Component<props> {
 	componentDidMount() {
 		this.props.actions.rooms.index();
 		this.props.actions.ipAdress.getAdress();
+
+        const cable = ActionCable.createConsumer('http://localhost:3000/cable');
+        const roomCable = cable.subscriptions.create({channel: 'RoomChannel'}, {
+            connected() {
+                console.log('connected');
+            },
+            disconnected() {
+                console.log('disconnected');
+            },
+            received(data: any) {
+				console.log('受け取りました')
+				console.log(data);
+				//roomspropsを変更するreduxactionを書く
+            },
+        })
 	}
 
 	render() {
