@@ -20,7 +20,7 @@ const actions: any = createActions(
                 return payload;
             },
 
-            create(value: string): rooms{
+            create(value: string): void{
                 
                 if (value === '') {
                     alert('ルーム名を入力してください');
@@ -31,15 +31,7 @@ const actions: any = createActions(
                     reqCreate.send('name=' + value);                   
                 }
 
-                const req: any = new XMLHttpRequest();
-                req.open('GET', 'http://localhost:3000/rooms', false)
-                req.send(null);
-                let payload: rooms = [];
-                if(req.status === 200) {
-                    let res: any = req.responseText;
-                    payload = JSON.parse(res)
-                }
-                return payload;
+                return
             },
 
             change(value: string) {
@@ -58,6 +50,12 @@ const actions: any = createActions(
                 }
                 return payload;
             },
+
+            add(newRoom: any): messages {
+                const payload: messages = newRoom;
+                console.log(payload);
+                return payload;
+            }
         },
         messages :{
             show(room_id: string): messages {

@@ -26,14 +26,9 @@ const roomReducer = handleActions(
         
         [`${actions.rooms.create}`]: (state, action) => ({
             ...state,
-            rooms: action.payload,
             value: '',
         }),
-        // todo　destroy　reduxerを書く
-        // 'destory_room' : (state, action) => ({
-        //     ...state,
-        //     room: actions.rooms.create.payload,
-        // }),
+
         [`${actions.rooms.change}`]: (state, action) => ({
             ...state,
             value: action.payload,
@@ -42,6 +37,11 @@ const roomReducer = handleActions(
         [`${actions.rooms.show}`]: (state, action) => ({
             ...state,
             room: action.payload,
+        }),
+        // ActionCableで送られてきた作成したroomをroomsに追加する
+        [`${actions.rooms.add}`]: (state, action) => ({
+            ...state,
+            rooms: state.rooms.concat(action.payload),
         }),
 
     },
