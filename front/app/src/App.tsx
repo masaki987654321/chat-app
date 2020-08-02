@@ -18,6 +18,8 @@ import ActionCable from 'actioncable';
 
 type props = any;
 
+let roomCable: any = null;
+
 class App extends Component<props> {
 
 	componentDidMount() {
@@ -26,19 +28,22 @@ class App extends Component<props> {
 
 		const cable = ActionCable.createConsumer('http://localhost:3000/cable');
 		const roomsAdd: any = this.props.actions.rooms.add;
-        const roomCable = cable.subscriptions.create({channel: 'RoomChannel'}, {
+        roomCable = cable.subscriptions.create({channel: 'RoomChannel'}, {
             connected() {
-                console.log('connected');
+                console.log('roon channel connected');
             },
             disconnected() {
-                console.log('disconnected');
+                console.log('room chanel disconnected');
             },
             received(data: any) {
-				console.log('received_data')
 				roomsAdd(data);
             },
         })
 	}
+
+    componentWillUnmount() {
+        roomCable.disconnected();
+    }
 
 	render() {
 		return (

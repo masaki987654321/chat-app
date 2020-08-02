@@ -6,6 +6,8 @@ import MessageInput from './MessageInput';
 
 import { Link } from 'react-router-dom';
 
+import ActionCable from 'actioncable';
+
 type messagesProps = {
     actions: {
         ipAdress: {
@@ -15,6 +17,7 @@ type messagesProps = {
             change: (value: string) => string,
             create: (room_id: string, value: string) => any,
             show: (room_id: string) => any,
+            add: (data: any[]) => any[],
         },
         rooms: {
             change: (value: string) => string,
@@ -33,11 +36,36 @@ type messagesProps = {
     myIp: string,
 };
 
-class Messages extends Component<messagesProps> {
+let messageCable: any = null;
 
+class Messages extends Component<messagesProps> {
     componentDidMount() {
         this.props.actions.messages.show(this.props.match.params.room_id);
         this.props.actions.rooms.show(this.props.match.params.room_id);
+
+        const cable = ActionCable.createConsumer('http://localhost:3000/cable');
+		const messageAdd: any = this.props.actions.messages.add;
+        messageCable = cable.subscriptions.create(
+            {
+                channel: 'MessageChannel',
+                room_id: this.props.match.params.room_id
+            }, 
+            {
+                connected() {
+                    console.log('messasge channel connected');
+                },
+                disconnected() {
+                    console.log('message channel disconnected');
+                },
+                received(data: any) {
+                    messageAdd(data);
+                },
+            }
+        )
+    }
+
+    componentWillUnmount() {
+        messageCable.disconnected();
     }
     
     render () {

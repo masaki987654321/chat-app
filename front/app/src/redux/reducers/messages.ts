@@ -25,7 +25,6 @@ const messageReducer = handleActions(
 
         [`${actions.messages.create}`]: (state, action) => ({
             ...state,
-            messages: action.payload,
             value: '',
         }),
 
@@ -33,7 +32,13 @@ const messageReducer = handleActions(
             ...state,
             value: action.payload,
         }),
-    },
+
+        // ActionCableで送られてきた作成したmessageをmessagesに追加する
+        [`${actions.messages.add}`]: (state, action) => ({
+            ...state,
+            messages: state.messages.concat(action.payload),
+        }),
+},
     initialState,
 )
 
