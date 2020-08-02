@@ -14,14 +14,36 @@ import {
 	Route,
 } from 'react-router-dom';
 
+import ActionCable from 'actioncable';
+
 type props = any;
+
+let roomCable: any = null;
 
 class App extends Component<props> {
 
 	componentDidMount() {
 		this.props.actions.rooms.index();
 		this.props.actions.ipAdress.getAdress();
+
+		const cable = ActionCable.createConsumer('http://localhost:3000/cable');
+		const roomsAdd: any = this.props.actions.rooms.add;
+        roomCable = cable.subscriptions.create({channel: 'RoomChannel'}, {
+            connected() {
+                console.log('roon channel connected');
+            },
+            disconnected() {
+                console.log('room chanel disconnected');
+            },
+            received(data: any) {
+				roomsAdd(data);
+            },
+        })
 	}
+
+    componentWillUnmount() {
+        roomCable.disconnected();
+    }
 
 	render() {
 		return (

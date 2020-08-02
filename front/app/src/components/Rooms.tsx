@@ -6,7 +6,7 @@ import RoomInput from './RoomInput';
 
 import { Link } from 'react-router-dom';
 
-type messagesProps = {
+type roomsProps = {
     roomActions: {
         change: (value: string) => string,
         create: (value: string) => any,
@@ -22,7 +22,7 @@ type messagesProps = {
     
 };
 
-class Rooms extends Component<messagesProps> { 
+class Rooms extends Component<roomsProps> {
     render () {
         return (
             <React.Fragment>

@@ -39,7 +39,6 @@ function Message(props: msgProps) {
             <ListItem alignItems="flex-start">
                 <ListItemText primary={props.msg} />
             </ListItem>
-            <Divider />
         </List>
     );
 }
