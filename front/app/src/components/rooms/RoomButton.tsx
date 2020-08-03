@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Button from '@material-ui/core/Button';
+import SendIcon from '@material-ui/icons/Send';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -22,8 +23,9 @@ function RoomButton(props: roomButtonProps) {
             variant="contained"
             color="primary"
             className={classes.button}
-            onClick={() => props.onClick(props.value)}
-        >作成</Button>
+            onClick={() => props.onClick(props.value)}>
+            <SendIcon />
+        </Button>
     );
 }
 

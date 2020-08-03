@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './styles/App.css';
 
-import Rooms from './components/Rooms';
-import Messages from './components/Messages';
+import Rooms from './components/rooms/Rooms';
+import Messages from './components/messages/Messages';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -23,7 +23,6 @@ class App extends Component<props> {
 	componentDidMount() {
 		this.props.actions.ipAdress.getAdress();
 	}
-
 	render() {
 		return (
 			<React.Fragment>
