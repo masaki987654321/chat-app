@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './styles/App.css';
 
-import Rooms from './components/Rooms';
-import Messages from './components/Messages';
+import Rooms from './components/rooms/Rooms';
+import Messages from './components/messages/Messages';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -14,8 +14,6 @@ import {
 	Route,
 } from 'react-router-dom';
 
-import ActionCable from 'actioncable';
-
 type props = any;
 
 let roomCable: any = null;
@@ -23,28 +21,8 @@ let roomCable: any = null;
 class App extends Component<props> {
 
 	componentDidMount() {
-		this.props.actions.rooms.index();
 		this.props.actions.ipAdress.getAdress();
-
-		const cable = ActionCable.createConsumer('http://localhost:3000/cable');
-		const roomsAdd: any = this.props.actions.rooms.add;
-        roomCable = cable.subscriptions.create({channel: 'RoomChannel'}, {
-            connected() {
-                console.log('roon channel connected');
-            },
-            disconnected() {
-                console.log('room chanel disconnected');
-            },
-            received(data: any) {
-				roomsAdd(data);
-            },
-        })
 	}
-
-    componentWillUnmount() {
-        roomCable.disconnected();
-    }
-
 	render() {
 		return (
 			<React.Fragment>

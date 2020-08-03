@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import Header from './Header';
+import Header from '../Header';
 import Message from './MessageList';
 import MessageInput from './MessageInput';
 
@@ -73,7 +73,7 @@ class Messages extends Component<messagesProps> {
             <React.Fragment>
 
                 <Link to='/home' style={{ textDecoration: 'none' }} >
-                    <Header title={'トークルーム『' + this.props.title + '』に入りました'}/>
+                    <Header title={'『' + this.props.title + '』に入室しました'}/>
                 </Link>
                 
                 {this.props.messageReducer.messages.map((msg: any) => {

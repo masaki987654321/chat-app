@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 
-import Header from './Header';
+import Header from '../Header';
 import RoomList from './RoomList';
 import RoomInput from './RoomInput';
 
 import { Link } from 'react-router-dom';
+
+import ActionCable from 'actioncable';
 
 type roomsProps = {
     roomActions: {
@@ -12,6 +14,7 @@ type roomsProps = {
         create: (value: string) => any,
         index: () => any,
         show: (room_id: string) => any,
+        add: (newRoom: any[]) => any[],
     },
     roomReducer: {
         room: any[],
@@ -22,7 +25,30 @@ type roomsProps = {
     
 };
 
+let roomCable: any = null;
 class Rooms extends Component<roomsProps> {
+
+    componentDidMount() {
+		this.props.roomActions.index();
+
+		const cable = ActionCable.createConsumer('http://localhost:3000/cable');
+		const roomsAdd: any = this.props.roomActions.add;
+        roomCable = cable.subscriptions.create({channel: 'RoomChannel'}, {
+            connected() {
+                console.log('roon channel connected');
+            },
+            disconnected() {
+                console.log('room chanel disconnected');
+            },
+            received(data: any) {
+				roomsAdd(data);
+            },
+        })
+	}
+
+    componentWillUnmount() {
+        roomCable.disconnected();
+    }
     render () {
         return (
             <React.Fragment>

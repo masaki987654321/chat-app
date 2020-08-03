@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import MessageButton from './MessageButton';
 import TextField from '@material-ui/core/TextField';
-import '../styles/TextInput.css';
+import '../../styles/TextInput.css';
 
 type textInputProps = {
     messageReducer: {
