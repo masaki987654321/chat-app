@@ -23,9 +23,10 @@ let roomCable: any = null;
 class App extends Component<props> {
 
 	componentDidMount() {
-		this.props.actions.ipAdress.getAdress();
+		this.props.actions.ipAdress();
 	}
 	render() {
+		console.log(this.props)
 		return (
 			<React.Fragment>
 				<Router>

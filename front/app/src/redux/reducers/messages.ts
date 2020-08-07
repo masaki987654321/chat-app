@@ -1,5 +1,4 @@
 import { handleActions } from 'redux-actions';
-import { actions } from '../actions/index';
 
 type initialState = {
     messages: any[],

@@ -9,15 +9,17 @@ export const getIp = (): any => {
     return (dispatch: any) => {
         axios.get('http://localhost:3000/get_ip')
             .then(res => {
-                dispatch(updateIp(res.data.ip))}
+                console.log(res)
+                dispatch(updateIp(res.data.data.ip))}
             ).catch(err => {
                 console.log(err);
-                dispatch(updateIp(null))
+                dispatch(updateIp('fail to get ip'))
             })
     }
 }
 
-const updsateIp = (ip: string): action => {
+const updateIp = (ip: string): action => {
+    console.log(ip)
     return {
         type: 'UPDATE_IP',
         payload: ip,
