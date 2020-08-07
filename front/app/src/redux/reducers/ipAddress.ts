@@ -13,7 +13,7 @@ const initialState: any = {
 const ipReducer = handleActions(
     {
         // todo actionTypes作る
-        [`${actions.ipAdress.getAdress}`]: (state, action) => ({
+        ['UPDATE_IP']: (state, action) => ({
             ...state,
             myIp: action.payload,
         })

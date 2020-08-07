@@ -6,7 +6,7 @@ import Messages from './components/messages/Messages';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actions } from './redux/actions/index';
+import { getIp } from './redux/actions/ip';
 import { default as roomActions } from './redux/actions/rooms';
 import { default as messageActions } from './redux/actions/messages';
 
@@ -57,7 +57,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 	actions: {
 		rooms: bindActionCreators(roomActions, dispatch),
 		messages: bindActionCreators(messageActions, dispatch),
-		ipAdress: bindActionCreators(actions.ipAdress, dispatch),
+		ipAdress: bindActionCreators(getIp, dispatch),
 	},
 });
 
