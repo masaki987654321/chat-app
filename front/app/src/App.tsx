@@ -7,6 +7,7 @@ import Messages from './components/messages/Messages';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actions } from './redux/actions/index';
+import { default as roomActions } from './redux/actions/rooms';
 
 import {
 	BrowserRouter as Router,
@@ -54,7 +55,7 @@ const mapStateToProps = (state: any) => ({ ...state });
 
 const mapDispatchToProps = (dispatch: any) => ({
 	actions: {
-		rooms: bindActionCreators(actions.rooms, dispatch),
+		rooms: bindActionCreators(roomActions, dispatch),
 		messages: bindActionCreators(actions.messages, dispatch),
 		ipAdress: bindActionCreators(actions.ipAdress, dispatch),
 	},

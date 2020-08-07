@@ -11,9 +11,8 @@ import ActionCable from 'actioncable';
 type roomsProps = {
     roomActions: {
         change: (value: string) => string,
-        create: (value: string) => any,
-        index: () => any,
-        show: (room_id: string) => any,
+        postRoom: (value: string) => any,
+        getRooms: () => any,
         add: (newRoom: any[]) => any[],
     },
     roomReducer: {
@@ -29,7 +28,8 @@ let roomCable: any = null;
 class Rooms extends Component<roomsProps> {
 
     componentDidMount() {
-		this.props.roomActions.index();
+        // this.props.roomActions.index();
+        this.props.roomActions.getRooms();
 
 		const cable = ActionCable.createConsumer('http://localhost:3000/cable');
 		const roomsAdd: any = this.props.roomActions.add;

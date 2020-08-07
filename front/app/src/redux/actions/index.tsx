@@ -1,4 +1,5 @@
 import { createActions } from 'redux-actions';
+import axios from 'axios';
 
 // 型の付けかた調べる
 type rooms = any;

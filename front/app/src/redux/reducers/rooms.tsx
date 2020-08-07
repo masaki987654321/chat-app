@@ -19,31 +19,26 @@ export const initialState: any = {
 const roomReducer = handleActions(
     {
         // todo actionTypes作る
-        [`${actions.rooms.index}`]: (state, action) => ({
+        ['INDEX_ROOMS']: (state, action) => ({
             ...state,
             rooms: action.payload,
         }),
         
-        [`${actions.rooms.create}`]: (state, action) => ({
+        ['CREATE_ROOM']: (state, action) => ({
             ...state,
             value: '',
         }),
 
-        [`${actions.rooms.change}`]: (state, action) => ({
+        ['CHANGE_ROOM_VALUE']: (state, action) => ({
             ...state,
             value: action.payload,
         }),
 
-        [`${actions.rooms.show}`]: (state, action) => ({
-            ...state,
-            room: action.payload,
-        }),
         // ActionCableで送られてきた作成したroomをroomsに追加する
-        [`${actions.rooms.add}`]: (state, action) => ({
+        ['ADD_ROOM']: (state, action) => ({
             ...state,
             rooms: state.rooms.concat(action.payload),
         }),
-
     },
     initialState,
 )

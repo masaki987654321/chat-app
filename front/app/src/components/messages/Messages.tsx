@@ -41,7 +41,6 @@ let messageCable: any = null;
 class Messages extends Component<messagesProps> {
     componentDidMount() {
         this.props.actions.messages.show(this.props.match.params.room_id);
-        this.props.actions.rooms.show(this.props.match.params.room_id);
 
         const cable = ActionCable.createConsumer('http://localhost:3000/cable');
 		const messageAdd: any = this.props.actions.messages.add;
