@@ -2,8 +2,8 @@ import { handleActions } from 'redux-actions';
 import { actions } from '../actions/index';
 
 type initialState = {
-    rooms: any[],
-    roon: any[],
+    rooms: any,
+    room: any,
     value: string,
     text: string,
 }

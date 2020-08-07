@@ -9,11 +9,14 @@ type textInputProps = {
         messages: any,
         text: string,
         value: string,
+        roomName: string,
     },
     messageActions: {
         change: (value: string) => string,
-        create: (room_id: string, value: string) => any,
-        show: (room_id: string) => any,
+        postMessage: (room_id: string, value: string) => any,
+        getMessages: (room_id: string) => any,
+        add: (data: any[]) => any[],
+        getRoom: (room_id: string) => any,
     },
     room_id: string,
 }
@@ -32,7 +35,7 @@ class MessageInput extends Component<textInputProps> {
                     />
 
                     <MessageButton
-                        onClick={this.props.messageActions.create}
+                        onClick={this.props.messageActions.postMessage}
                         value={this.props.messageReducer.value}
                         room_id={this.props.room_id}
                     />

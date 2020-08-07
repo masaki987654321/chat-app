@@ -9,30 +9,20 @@ import { Link } from 'react-router-dom';
 import ActionCable from 'actioncable';
 
 type messagesProps = {
-    actions: {
-        ipAdress: {
-            getAdress: () => string,
-        },
-        messages: {
-            change: (value: string) => string,
-            create: (room_id: string, value: string) => any,
-            show: (room_id: string) => any,
-            add: (data: any[]) => any[],
-        },
-        rooms: {
-            change: (value: string) => string,
-            create: (value: string) => any,
-            index: () => any,
-            show: (room_id: string) => any,
-        }
+    messageActions: {
+        change: (value: string) => string,
+        postMessage: (room_id: string, value: string) => any,
+        getMessages: (room_id: string) => any,
+        add: (data: any[]) => any[],
+        getRoom: (room_id: string) => any,
     },
     messageReducer: {
         messages: any,
         text: string,
         value: string,
+        roomName: string,
     },
     match: any,
-    title: string,
     myIp: string,
 };
 
@@ -40,10 +30,13 @@ let messageCable: any = null;
 
 class Messages extends Component<messagesProps> {
     componentDidMount() {
-        this.props.actions.messages.show(this.props.match.params.room_id);
+        // meesage一覧を取得
+        this.props.messageActions.getMessages(this.props.match.params.room_id);
+        // roomの名前を取得
+        this.props.messageActions.getRoom(this.props.match.params.room_id);
 
         const cable = ActionCable.createConsumer('http://localhost:3000/cable');
-		const messageAdd: any = this.props.actions.messages.add;
+		const messageAdd: any = this.props.messageActions.add;
         messageCable = cable.subscriptions.create(
             {
                 channel: 'MessageChannel',
@@ -72,7 +65,7 @@ class Messages extends Component<messagesProps> {
             <React.Fragment>
 
                 <Link to='/home' style={{ textDecoration: 'none' }} >
-                    <Header title={'『' + this.props.title + '』に入室しました'}/>
+                    <Header title={'『' + this.props.messageReducer.roomName + '』に入室しました'}/>
                 </Link>
                 
                 {this.props.messageReducer.messages.map((msg: any) => {
@@ -80,7 +73,7 @@ class Messages extends Component<messagesProps> {
                 })}
 
                 <MessageInput
-                    messageActions={this.props.actions.messages}
+                    messageActions={this.props.messageActions}
                     messageReducer={this.props.messageReducer}
                     room_id={this.props.match.params.room_id}
                 />
