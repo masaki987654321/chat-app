@@ -1,84 +1,30 @@
-# chatApp
+# リアルタイムチャットアプリ
 
-rails
+![result](https://user-images.githubusercontent.com/53162456/89697263-613ca280-d956-11ea-9645-c16810aba951.gif)
 
-https://nakatanorihito.com/programming/docker-rails-postgresql/
+## 使用技術
+### バックエンド
+- Ruby
+- Ruby on Rails
+- PostgreSQL
 
-docker-compose run --rm　api rails new . --api --force --skip-bundle --database=postgresql
+### フロントエンド
+- TypeScript
+- React
+- Redux
 
-config/database.ymlを変更
+### インフラ
+- Docker
+- Docker Compose
 
-default: &default
-  adapter: postgresql
-  encoding: unicode
-
-  username: postgres 
-  password: password
-  host: db
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
-development:
-  <<: *default
-  database: myapp_development
-
-test:
-  <<: *default
-  database: myapp_test
-
-production:
-  <<: *default
-  database: myapp_production
-  username: myapp
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
-
-
-$ docker-compose build
-
-$ docker-compose up -d
-
-$ docker-compose run api rails db:create
-
-localhost:3000
-
-
-
-
-react
-
-docker file
-
-FROM node:10-alpine
-RUN mkdir /myapp
-WORKDIR /myap
-
-
-docker-compose.ymlを変更
-
-  front:
-    build: ./
-    command: sh -c "cd app && yarn start"
-    ports:
-      - '8000:3000'
-    volumes:
-      - ./front:/myapp
-    depends_on:
-      - api
-    stdin_open: true
-
-
-$ docker-compose run --rm front sh -c 'npx create-react-app app --template typescript'
-
-docker-compose yum を変更
-
-      front:
-    build: ./front
-    command: sh -c "cd app && yarn start"
-    ports:
-      - '8000:3000'
-    volumes:
-      - ./front:/myapp
-    depends_on:
-      - api
-    stdin_open: true
-
-dockerfileを移動
+### 使用したnode.jsパッケージ
+- react
+- react-router-dom
+- redux
+- react-redux
+- redux-thunk
+- redux-logger
+- redux-actions
+- axios
+- actioncable
+- material-ui
