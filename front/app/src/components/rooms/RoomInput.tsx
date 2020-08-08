@@ -13,9 +13,9 @@ type textInputProps = {
     },
     roomActions: {
         change: (value: string) => string,
-        create: (value: string) => any,
-        index: () => any,
-        show: (room_id: string) => any,
+        postRoom: (value: string) => any,
+        getRooms: () => any,
+        add: (newRoom: any[]) => any[],
     },
 }
 class RoomInput extends Component<textInputProps> {
@@ -33,7 +33,7 @@ class RoomInput extends Component<textInputProps> {
                     />
 
                     <RoomButton
-                        onClick={this.props.roomActions.create}
+                        onClick={this.props.roomActions.postRoom}
                         value={this.props.roomReducer.value}
                     />
                 </form>

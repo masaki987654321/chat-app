@@ -6,7 +6,9 @@ import Messages from './components/messages/Messages';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actions } from './redux/actions/index';
+import { getIp } from './redux/actions/ip';
+import { default as roomActions } from './redux/actions/rooms';
+import { default as messageActions } from './redux/actions/messages';
 
 import {
 	BrowserRouter as Router,
@@ -21,9 +23,10 @@ let roomCable: any = null;
 class App extends Component<props> {
 
 	componentDidMount() {
-		this.props.actions.ipAdress.getAdress();
+		this.props.actions.ipAdress();
 	}
 	render() {
+		console.log(this.props)
 		return (
 			<React.Fragment>
 				<Router>
@@ -36,10 +39,9 @@ class App extends Component<props> {
 						</Route>
 						<Route path='/room/:room_id' render={({match}) => (
 							<Messages
-								actions={this.props.actions}
+								messageActions={this.props.actions.messages}
 								messageReducer={this.props.messageReducer}
 								match={match}
-								title={this.props.roomReducer.room.name}
 								myIp={this.props.ipReducer.myIp}
 							/>
 						)}/>
@@ -54,9 +56,9 @@ const mapStateToProps = (state: any) => ({ ...state });
 
 const mapDispatchToProps = (dispatch: any) => ({
 	actions: {
-		rooms: bindActionCreators(actions.rooms, dispatch),
-		messages: bindActionCreators(actions.messages, dispatch),
-		ipAdress: bindActionCreators(actions.ipAdress, dispatch),
+		rooms: bindActionCreators(roomActions, dispatch),
+		messages: bindActionCreators(messageActions, dispatch),
+		ipAdress: bindActionCreators(getIp, dispatch),
 	},
 });
 
