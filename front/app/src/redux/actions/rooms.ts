@@ -10,7 +10,7 @@ type action = {
 
 const getRooms = (): any => {
     return (dispatch: any) => {
-        axios.get('http://localhost:3000/rooms')
+        axios.get('http://localhost:3000/api/v1/rooms')
             .then(res => {
                 dispatch(indexRooms(res.data))}
             ).catch(err => {
@@ -29,7 +29,7 @@ const indexRooms = (data: rooms): action => {
 
 const postRoom = (value: string): any => {
     return (dispatch: any) => {
-        axios.post('http://localhost:3000/rooms', {
+        axios.post('http://localhost:3000/api/v1/rooms', {
             name: value,
         })
         .then(res => {
