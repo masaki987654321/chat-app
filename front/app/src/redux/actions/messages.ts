@@ -11,7 +11,7 @@ type action = {
 
 const getMessages = (room_id: string): any => {
     return (dispatch: any) => {
-        axios.get('http://localhost:3000/messages/' + room_id)
+        axios.get('http://localhost:3000/api/v1/messages/' + room_id)
             .then(res => {
                 dispatch(indexMessages(res.data))}
             ).catch(err => {
@@ -30,7 +30,7 @@ const indexMessages = (data: messages): action => {
 
 const postMessage = (room_id: string, value: string): any => {
     return (dispatch: any) => {
-        axios.post('http://localhost:3000/messages', {
+        axios.post('http://localhost:3000/api/v1/messages', {
             text: value,
             room_id: room_id,
         })
@@ -66,7 +66,7 @@ const add = (newMessage: message): action => {
 
 const getRoom = (room_id: string): any => {
     return (dispatch: any) => {
-        axios.get('http://localhost:3000/rooms/' + room_id)
+        axios.get('http://localhost:3000/api/v1/rooms/' + room_id)
         .then(res => {
             dispatch(getRoomName(res.data))}
         ).catch(err => {

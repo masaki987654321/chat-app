@@ -7,7 +7,7 @@ type action = {
 
 export const getIp = (): any => {
     return (dispatch: any) => {
-        axios.get('http://localhost:3000/get_ip')
+        axios.get('http://localhost:3000/api/v1/get_ip')
             .then(res => {
                 console.log(res)
                 dispatch(updateIp(res.data.data.ip))}
